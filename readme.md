@@ -110,3 +110,35 @@ then you'll access all variables, like so:
 ```js
 MyNewNamespace.varName
 ```
+
+### Without Laravel
+
+If you're not using Laravel, then you'll need to hard-wire things yourself. (Or, feel free to submit a pull request with an implementation for your desired framework.)
+
+First, create an implementation of the `Laracasts\Utilities\JavaScript\ViewBinder` interface. This class is in charge of inserting the given JavaScript into your view/page.
+
+```php
+<?php
+
+class MyAppViewBinder implements Laracasts\Utilities\JavaScript\ViewBinder {
+
+    // $js will contain your JS-formatted variable initializations
+    public function bind($js)
+    {
+        // Do what you need to do to add this JavaScript to
+        // the appropriate place in your app.
+    }
+}
+```
+
+Next, put it all together:
+
+```php
+$binder = new MyAppViewBinder;
+$make = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
+$make->javaScript(['foo' => 'bar']);
+```
+
+Now, you can access `window.foo` from your JavaScript.
+
+Remember, though, this is only necessary if you aren't using Laravel. If you are, then just reference the service provider, as demonstrated above.
