@@ -1,0 +1,24 @@
+{
+    "name": "laracasts/utilities",
+    "description": "Transform your PHP to JavaScript",
+    "keywords": ["laravel", "javascript"],
+    "authors": [
+        {
+            "name": "Jeffrey Way",
+            "email": "jeffrey@laracasts.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.1.*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Laracasts\\Utilities": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
