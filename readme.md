@@ -12,7 +12,7 @@ Begin by installing this package through Composer.
 ```js
 {
     "require": {
-		"laracasts/utilities": "dev-master"
+		"laracasts/utilities": "0.*"
 	}
 }
 ```
