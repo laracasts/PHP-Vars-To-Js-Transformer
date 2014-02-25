@@ -9,9 +9,17 @@ This package simplifies the process drastically.
 
 Begin by installing this package through Composer.
 
+```js
+{
+    "require": {
+		"laracasts/utilities": "dev-master"
+	}
+}
+```
+
 ### Laravel Users
 
-If you are a Laravel user, then there is a service provider that you can make use to automatically prepare the bindings and such.
+If you are a Laravel user, then there is a service provider that you can make use of to automatically prepare the bindings and such.
 
 ```php
 
@@ -40,9 +48,15 @@ public function index()
 
 Using the code above, you'll now be able to access `foo`, `user`, and `age` from your JavaScript.
 
+```js
+console.log(foo); // bar
+console.log(user); // User Obj
+console.log(age); // 29
+```
+
 ### Defaults
 
-There are only two configuration options that you'll need to worry about. First, publish the default configuration.
+If using Laravel, there are only two configuration options that you'll need to worry about. First, publish the default configuration.
 
 ```bash
 php artisan config:publish laracasts/utilities
@@ -55,6 +69,7 @@ This will add a new configuration file to: `app/config/packages/laracasts/utilit
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | View to Bind JavaScript Vars To
@@ -83,10 +98,8 @@ return [
 
 #### bind_js_vars_to_this_view
 
-If you're using the Laravel service provider with this package, then you need to update this file to specify
-which view you want the new transformed JavaScript variables to be prepended to. Typically, your footer is a good place for this.
-If you have something like a `layouts/partials/footer' partial, where you store your footer and script references, then make the
-`bind_js_vars_to_this_view` key equal to that path. Behind the scenes, this package will listen for when that view is composed, and essentially paste the JS variables within it.
+You need to update this file to specify which view you want the new transformed JavaScript variables to be prepended to. Typically, your footer is a good place for this.
+If you include something like a `layouts/partials/footer' partial, where you store your footer and script references, then make the `bind_js_vars_to_this_view` key equal to that path. Behind the scenes, the Laravel implementation of this package will listen for when that view is composed, and essentially paste the JS variables within it.
 
 #### js_namespace
 
