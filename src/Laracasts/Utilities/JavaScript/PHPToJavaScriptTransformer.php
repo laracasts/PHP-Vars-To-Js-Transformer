@@ -42,7 +42,7 @@ class PHPToJavaScriptTransformer {
      */
     public function javaScript(array $vars)
     {
-        // First, though, we have to translate the
+        // First, we have to translate the
         // variables to something JS-friendly.
         $js = $this->buildJavaScriptSyntax($vars);
 
