@@ -142,3 +142,7 @@ $make->javaScript(['foo' => 'bar']);
 Now, you can access `window.foo` from your JavaScript.
 
 Remember, though, this is only necessary if you aren't using Laravel. If you are, then just reference the service provider, as demonstrated above.
+
+## License
+
+[View the license](https://github.com/laracasts/PHP-Vars-To-Js-Transformer/blob/master/LICENSE) for this repo.
