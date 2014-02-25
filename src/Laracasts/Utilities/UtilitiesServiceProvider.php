@@ -8,22 +8,21 @@ use Config;
 
 class UtilitiesServiceProvider extends ServiceProvider {
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-        $this->app->bind('Give', function($app)
-        {
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('Give', function($app) {
             $view = Config::get('utilities::config.bind_js_vars_to_this_view');
             $namespace = Config::get('utilities::config.js_namespace');
 
@@ -31,7 +30,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
 
             return new PHPToJavaScriptTransformer($binder, $namespace);
         });
-	}
+    }
 
     public function boot()
     {
@@ -46,13 +45,13 @@ class UtilitiesServiceProvider extends ServiceProvider {
 
 
     /**
-	 * The service provided
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return ['Give'];
-	}
+     * The service provided
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['Give'];
+    }
 
 }
