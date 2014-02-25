@@ -99,7 +99,7 @@ return [
 #### bind_js_vars_to_this_view
 
 You need to update this file to specify which view you want the new transformed JavaScript variables to be prepended to. Typically, your footer is a good place for this.
-If you include something like a `layouts/partials/footer' partial, where you store your footer and script references, then make the `bind_js_vars_to_this_view` key equal to that path. Behind the scenes, the Laravel implementation of this package will listen for when that view is composed, and essentially paste the JS variables within it.
+If you include something like a `layouts/partials/footer` partial, where you store your footer and script references, then make the `bind_js_vars_to_this_view` key equal to that path. Behind the scenes, the Laravel implementation of this package will listen for when that view is composed, and essentially paste the JS variables within it.
 
 #### js_namespace
 
