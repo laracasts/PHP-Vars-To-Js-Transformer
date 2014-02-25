@@ -9,12 +9,21 @@ class PHPToJavaScriptTransformer {
      *
      * @var string
      */
-    private $namespace;
+    protected $namespace;
 
     /**
      * @var ViewBinder
      */
-    private $viewBinder;
+    protected $viewBinder;
+
+    /**
+     * Transformable types
+     *
+     * @var array
+     */
+    protected $types = [
+        'String', 'Array', 'Object', 'Numeric', 'Boolean'
+    ];
 
     /**
      * @param ViewBinder $viewBinder
@@ -51,12 +60,12 @@ class PHPToJavaScriptTransformer {
      *
      * @return array
      */
-    protected function buildJavaScriptSyntax(array $vars)
+    public function buildJavaScriptSyntax(array $vars)
     {
         $js = $this->buildNamespaceDeclaration();
 
         foreach ($vars as $key => $value) {
-            $js .= $this->buildVariableDeclaration($key, $value);
+            $js .= $this->buildVariableInitialization($key, $value);
         }
 
         return $js;
@@ -81,7 +90,7 @@ class PHPToJavaScriptTransformer {
      *
      * @return string
      */
-    protected function buildVariableDeclaration($key, $value)
+    protected function buildVariableInitialization($key, $value)
     {
         return "{$this->namespace}.{$key} = {$this->optimizeValueForJavaScript($value)};";
     }
@@ -96,21 +105,71 @@ class PHPToJavaScriptTransformer {
      */
     protected function optimizeValueForJavaScript($value)
     {
+        // For every kind of type, let's see
+        // if it needs to be transformed for JS
+        foreach ($this->types as $transformer)
+        {
+            $js = $this->{"transform{$transformer}"}($value);
+
+            if ($js) return $js;
+        }
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transformString($value)
+    {
+        if (is_string($value))
+        {
+            return "'{$this->escape($value)}'";
+        }
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transformArray($value)
+    {
         if (is_array($value))
         {
             return json_encode($value);
         }
+    }
 
-        if (is_bool($value))
-        {
-            return $value ? 'true' : 'false';
-        }
-
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function transformNumeric($value)
+    {
         if (is_numeric($value))
         {
             return $value;
         }
+    }
 
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transformBoolean($value)
+    {
+        if (is_bool($value))
+        {
+            return $value ? 'true' : 'false';
+        }
+    }
+
+    /**
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
+    public function transformObject($value)
+    {
         if (is_object($value))
         {
             // If a toJson method exists, we'll assume that
@@ -126,8 +185,6 @@ class PHPToJavaScriptTransformer {
 
             return "'{$value}'";
         }
-
-        return "'{$this->escape($value)}'";
     }
 
     /**
