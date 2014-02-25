@@ -119,7 +119,7 @@ class PHPToJavaScriptTransformer {
      * @param $value
      * @return string
      */
-    public function transformString($value)
+    protected function transformString($value)
     {
         if (is_string($value))
         {
@@ -131,7 +131,7 @@ class PHPToJavaScriptTransformer {
      * @param $value
      * @return string
      */
-    public function transformArray($value)
+    protected function transformArray($value)
     {
         if (is_array($value))
         {
@@ -143,7 +143,7 @@ class PHPToJavaScriptTransformer {
      * @param $value
      * @return mixed
      */
-    public function transformNumeric($value)
+    protected function transformNumeric($value)
     {
         if (is_numeric($value))
         {
@@ -155,7 +155,7 @@ class PHPToJavaScriptTransformer {
      * @param $value
      * @return string
      */
-    public function transformBoolean($value)
+    protected function transformBoolean($value)
     {
         if (is_bool($value))
         {
@@ -168,7 +168,7 @@ class PHPToJavaScriptTransformer {
      * @return string
      * @throws \Exception
      */
-    public function transformObject($value)
+    protected function transformObject($value)
     {
         if (is_object($value))
         {
