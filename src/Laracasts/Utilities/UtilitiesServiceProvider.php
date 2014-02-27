@@ -22,7 +22,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Give', function($app) {
+        $this->app->bind('JavaScript', function($app) {
             $view = Config::get('utilities::config.bind_js_vars_to_this_view');
             $namespace = Config::get('utilities::config.js_namespace');
 
@@ -38,8 +38,8 @@ class UtilitiesServiceProvider extends ServiceProvider {
 
         // Give::javaScript(['foo' => 'bar'])
         AliasLoader::getInstance()->alias(
-            'Give',
-            'Laracasts\Utilities\JavaScript\Facades\Give'
+            'JavaScript',
+            'Laracasts\Utilities\JavaScript\Facades\JavaScript'
         );
     }
 
@@ -51,7 +51,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return ['Give'];
+        return ['JavaScript'];
     }
 
 }

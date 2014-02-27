@@ -40,7 +40,7 @@ class PHPToJavaScriptTransformer {
      *
      * @param array $vars
      */
-    public function javascript(array $vars)
+    public function give(array $vars)
     {
         // First, we have to translate the
         // variables to something JS-friendly.
@@ -200,4 +200,4 @@ class PHPToJavaScriptTransformer {
         return str_replace("'", "\\'", $value);
     }
 
-} 
+}
