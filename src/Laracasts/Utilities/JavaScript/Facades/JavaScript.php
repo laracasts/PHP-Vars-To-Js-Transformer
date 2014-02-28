@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Give extends Facade {
+class JavaScript extends Facade {
 
     /**
      * Name of the binding in the IoC container
@@ -11,7 +11,7 @@ class Give extends Facade {
      */
     protected static function getFacadeAccessor()
     {
-        return 'Give';
+        return 'JavaScript';
     }
 
 } 

@@ -40,7 +40,7 @@ class PHPToJavaScriptTransformer {
      *
      * @param array $vars
      */
-    public function javascript(array $vars)
+    public function put(array $vars)
     {
         // First, we have to translate the
         // variables to something JS-friendly.

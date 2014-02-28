@@ -12,7 +12,7 @@ Begin by installing this package through Composer.
 ```js
 {
     "require": {
-		"laracasts/utilities": "0.*"
+		"laracasts/utilities": "1.0"
 	}
 }
 ```
@@ -31,12 +31,12 @@ If you are a Laravel user, then there is a service provider that you can make us
 ];
 ```
 
-When this provider is booted, you'll have access to a helpful `Give` facade, which you may use in your controllers.
+When this provider is booted, you'll have access to a helpful `JavaScript` facade, which you may use in your controllers.
 
 ```php
 public function index()
 {
-    Give::javascript([
+    JavaScript::put([
         'foo' => 'bar',
         'user' => User::first(),
         'age' => 29
@@ -135,8 +135,8 @@ Next, put it all together:
 
 ```php
 $binder = new MyAppViewBinder;
-$make = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
-$make->javaScript(['foo' => 'bar']);
+$javascript = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
+$javascript->put(['foo' => 'bar']);
 ```
 
 Now, you can access `window.foo` from your JavaScript.
