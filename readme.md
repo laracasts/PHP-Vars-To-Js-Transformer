@@ -36,7 +36,7 @@ When this provider is booted, you'll have access to a helpful `Give` facade, whi
 ```php
 public function index()
 {
-    Give::javascript([
+    JavaScript::give([
         'foo' => 'bar',
         'user' => User::first(),
         'age' => 29
