@@ -172,7 +172,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_object($value))
         {
-            // If a toJson method exists, we'll assume that
+            // If a toJson() method exists, we'll assume that
             // the object can cast itself automatically
             if (method_exists($value, 'toJson')) return $value;
 
