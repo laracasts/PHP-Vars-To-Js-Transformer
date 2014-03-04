@@ -62,13 +62,7 @@ class PHPToJavaScriptTransformer {
      */
     public function buildJavaScriptSyntax(array $vars)
     {
-        $js = $this->buildNamespaceDeclaration();
-
-        foreach ($vars as $key => $value) {
-            $js .= $this->buildVariableInitialization($key, $value);
-        }
-
-        return $js;
+        return 'foo';
     }
 
     /**
