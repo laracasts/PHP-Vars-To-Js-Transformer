@@ -37,4 +37,5 @@ class LaravelViewBinder implements ViewBinder {
             echo "<script>{$js}</script>";
         });
     }
+    
 }
