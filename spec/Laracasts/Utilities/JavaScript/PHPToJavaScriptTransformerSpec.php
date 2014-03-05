@@ -49,6 +49,18 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
         $this->buildJavaScriptSyntax(['age' => 10, 'sum' => 10.12, 'dec' => 0.5])
             ->shouldMatch('/window.age = 10;window.sum = 10.12;window.dec = 0.5;/');
     }
+    
+    function it_transforms_zero_values()
+    {
+        $this->buildJavaScriptSyntax(['age' => 0, 'sum' => 10 - 10, 'dec' => 0.00])
+            ->shouldMatch('/window.age = 0;window.sum = 0;window.dec = 0;/');
+    }
+    
+    function it_transforms_null_values()
+    {
+        $this->buildJavaScriptSyntax(['age' => null, 'sum' => null])
+            ->shouldMatch('/window.age = null;window.sum = null;/');
+    }
 
     function it_throws_an_exception_if_an_object_cant_be_transformed(\StdClass $obj)
     {
