@@ -111,7 +111,7 @@ class PHPToJavaScriptTransformer {
         {
             $js = $this->{"transform{$transformer}"}($value);
 
-            if (is_array($js)) return $js[0];
+            if ( ! is_null($js)) return $js;
         }
     }
 
@@ -123,7 +123,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_string($value))
         {
-            return ["'{$this->escape($value)}'"];
+            return "'{$this->escape($value)}'";
         }
     }
 
@@ -135,7 +135,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_array($value))
         {
-            return [json_encode($value)];
+            return json_encode($value);
         }
     }
 
@@ -147,7 +147,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_numeric($value))
         {
-            return [$value];
+            return $value;
         }
     }
 
@@ -159,7 +159,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_bool($value))
         {
-            return [$value ? 'true' : 'false'];
+            return $value ? 'true' : 'false';
         }
     }
 
@@ -183,7 +183,7 @@ class PHPToJavaScriptTransformer {
                 throw new Exception('The provided object needs a __toString() method.');
             }
 
-            return ["'{$value}'"];
+            return "'{$value}'";
         }
     }
     
@@ -195,7 +195,7 @@ class PHPToJavaScriptTransformer {
     {
         if (is_null($value))
         {
-            return ['null'];
+            return 'null';
         }
     }
 
