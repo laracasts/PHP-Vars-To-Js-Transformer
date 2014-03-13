@@ -36,7 +36,6 @@ class UtilitiesServiceProvider extends ServiceProvider {
     {
         $this->package('laracasts/utilities');
 
-        // JavaScript::javaScript(['foo' => 'bar'])
         AliasLoader::getInstance()->alias(
             'JavaScript',
             'Laracasts\Utilities\JavaScript\Facades\JavaScript'
