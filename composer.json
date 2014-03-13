@@ -2,6 +2,7 @@
     "name": "laracasts/utilities",
     "description": "Transform your PHP to JavaScript",
     "keywords": ["laravel", "javascript"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Jeffrey Way",
