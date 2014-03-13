@@ -1,5 +1,7 @@
 # Transform PHP Vars to JavaScript
 
+[![Build Status](https://travis-ci.org/laracasts/PHP-Vars-To-Js-Transformer.png?branch=master)](https://travis-ci.org/laracasts/PHP-Vars-To-Js-Transformer)
+
 Often, you'll find yourself in situations, where you want to pass some server-side string/array/collection/whatever
 to your JavaScript. Traditionally, this can be a bit of a pain - especially as your app grows.
 
