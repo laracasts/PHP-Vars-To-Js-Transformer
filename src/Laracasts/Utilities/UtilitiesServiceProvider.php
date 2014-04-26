@@ -50,7 +50,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return ['JavaScript'];
+        return array('JavaScript');
     }
 
 }
