@@ -135,8 +135,37 @@ class PHPToJavaScriptTransformer {
     {
         if (is_array($value))
         {
-            return json_encode($value);
+            $array = array_map(function($entry) { return $this->optimizeValueForJavaScript($entry); }, $value);
+
+            if (array_keys($array) === range(0, count($array) - 1)) {
+                return $this->encodeSequentialArray($array);
+            }
+            else {
+                return $this->encodeAssociativeArray($array);
+            }
         }
+    }
+
+    /**
+     * @param  array  $array
+     * @return string
+     */
+    protected function encodeSequentialArray(array $array) {
+        return '[' . implode(', ', $array) . ']';
+    }
+
+    /**
+     * @param  array  $array
+     * @return string
+     */
+    protected function encodeAssociativeArray(array $array) {
+        $objectLiteral = '{ ';
+
+        foreach ($array as $key => $value) {
+            $objectLiteral .= "{$key}: $value, ";
+        }
+
+        return $objectLiteral . ' }';
     }
 
     /**
