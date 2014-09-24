@@ -32,10 +32,19 @@ class LaravelViewBinder implements ViewBinder {
      */
     public function bind($js)
     {
-        $this->event->listen("composing: {$this->viewToBindVariables}", function() use ($js)
+        if ( ! is_array($this->viewToBindVariables))
         {
-            echo "<script>{$js}</script>";
-        });
+            $this->viewToBindVariables = [$this->viewToBindVariables];
+        }
+
+        foreach ($this->viewToBindVariables as $viewVariable)
+        {
+            $this->event->listen("composing: {$viewVariable}", function () use ($js)
+            {
+                echo "<script>{$js}</script>";
+            });
+        }
+
     }
     
 }
