@@ -64,7 +64,17 @@ If using Laravel, there are only two configuration options that you'll need to w
 php artisan config:publish laracasts/utilities
 ```
 
+Of in Laravel 5
+
+```bash
+php artisan publish:config laracasts/utilities
+```
+
 This will add a new configuration file to: `app/config/packages/laracasts/utilities`.
+
+Or in Laravel 5 `config/packages/laracasts/utilities`.
+
+
 
 ```php
 
