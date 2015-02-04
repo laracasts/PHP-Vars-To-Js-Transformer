@@ -1,6 +1,7 @@
 <?php namespace Laracasts\Utilities\JavaScript;
 
 use Exception;
+use stdClass;
 
 class PHPToJavaScriptTransformer {
 
@@ -22,7 +23,7 @@ class PHPToJavaScriptTransformer {
      * @var array
      */
     protected $types = [
-        'String', 'Array', 'Object', 'Numeric', 'Boolean', 'Null'
+        'String', 'Array', 'stdClass', 'Object', 'Numeric', 'Boolean', 'Null'
     ];
 
     /**
@@ -160,6 +161,19 @@ class PHPToJavaScriptTransformer {
         if (is_bool($value))
         {
             return $value ? 'true' : 'false';
+        }
+    }
+
+    /**
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
+    protected function transformstdClass($value)
+    {
+        if ($value instanceof stdClass)
+        {
+            return json_encode($value);
         }
     }
 
