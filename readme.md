@@ -19,7 +19,7 @@ Begin by installing this package through Composer.
 }
 ```
 
-> If you use Laravel 4 users: instead install `~1.0` of this package (and use the documentation for that release). For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
+> If you use Laravel 4: instead install `~1.0` of this package (and use the documentation for that release). For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
 
 ### Laravel Users
 
