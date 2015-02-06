@@ -15,6 +15,9 @@ class LaravelViewBinder implements ViewBinder
     private $event;
 
     /**
+     * The name of the view to bind any
+     * generated JS variables to.
+     * 
      * @var string
      */
     private $viewToBindVariables;
