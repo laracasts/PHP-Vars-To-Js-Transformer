@@ -4,7 +4,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer;
 use Laracasts\Utilities\JavaScript\LaravelViewBinder;
-use Config;
 
 class UtilitiesServiceProvider extends ServiceProvider {
 
