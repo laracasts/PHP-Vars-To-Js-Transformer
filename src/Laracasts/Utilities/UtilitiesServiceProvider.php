@@ -9,13 +9,6 @@ use Config;
 class UtilitiesServiceProvider extends ServiceProvider {
 
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Register the service provider.
      *
      * @return void
@@ -23,8 +16,8 @@ class UtilitiesServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->bind('JavaScript', function($app) {
-            $view = Config::get('utilities::config.bind_js_vars_to_this_view');
-            $namespace = Config::get('utilities::config.js_namespace');
+            $view = config('javascript.bind_js_vars_to_this_view');
+            $namespace = config('javascript.js_namespace');
 
             $binder = new LaravelViewBinder($app['events'], $view);
 
@@ -34,23 +27,15 @@ class UtilitiesServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-        $this->package('laracasts/utilities');
+        $this->publishes([
+            __DIR__.'/../../config/javascript.php',
+            config_path('javascript.php')
+        ]);
 
         AliasLoader::getInstance()->alias(
             'JavaScript',
             'Laracasts\Utilities\JavaScript\Facades\JavaScript'
         );
-    }
-
-
-    /**
-     * The service provided
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['JavaScript'];
     }
 
 }
