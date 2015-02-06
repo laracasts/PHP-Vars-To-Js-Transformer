@@ -19,7 +19,7 @@ Begin by installing this package through Composer.
 }
 ```
 
-> If you use Laravel 4 users: instead install `~1.0` of this package. For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
+> If you use Laravel 4 users: instead install `~1.0` of this package (and use the documentation for that release). For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
 
 ### Laravel Users
 
@@ -31,7 +31,7 @@ If you are a Laravel user, there is a service provider you can make use of to au
 
 'providers' => [
     '...',
-    'Laracasts\Utilities\UtilitiesServiceProvider'
+    'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
 ];
 ```
 

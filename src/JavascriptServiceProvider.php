@@ -1,13 +1,13 @@
 <?php
 
-namespace Laracasts\Utilities;
+namespace Laracasts\Utilities\JavaScript;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer;
 use Laracasts\Utilities\JavaScript\LaravelViewBinder;
 
-class UtilitiesServiceProvider extends ServiceProvider
+class JavaScriptServiceProvider extends ServiceProvider
 {
 
     /**
