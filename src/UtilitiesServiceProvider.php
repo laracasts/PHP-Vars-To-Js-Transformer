@@ -33,7 +33,7 @@ class UtilitiesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/javascript.php' => config_path('javascript.php')
+            __DIR__ . '/config/javascript.php' => config_path('javascript.php')
         ]);
 
         AliasLoader::getInstance()->alias(
