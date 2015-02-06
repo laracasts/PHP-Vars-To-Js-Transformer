@@ -14,10 +14,12 @@ Begin by installing this package through Composer.
 ```js
 {
     "require": {
-		"laracasts/utilities": "~1.0"
+		"laracasts/utilities": "~2.0"
 	}
 }
 ```
+
+> If you use Laravel 4 users: instead install `~1.0` of this package. For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
 
 ### Laravel Users
 
