@@ -1,11 +1,14 @@
-<?php namespace Laracasts\Utilities;
+<?php
+
+namespace Laracasts\Utilities;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer;
 use Laracasts\Utilities\JavaScript\LaravelViewBinder;
 
-class UtilitiesServiceProvider extends ServiceProvider {
+class UtilitiesServiceProvider extends ServiceProvider
+{
 
     /**
      * Register the service provider.
@@ -14,7 +17,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('JavaScript', function($app) {
+        $this->app->bind('JavaScript', function ($app) {
             $view = config('javascript.bind_js_vars_to_this_view');
             $namespace = config('javascript.js_namespace');
 
@@ -30,7 +33,7 @@ class UtilitiesServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/javascript.php' => config_path('javascript.php')
+            __DIR__ . '/../../config/javascript.php' => config_path('javascript.php')
         ]);
 
         AliasLoader::getInstance()->alias(

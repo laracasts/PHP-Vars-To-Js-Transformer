@@ -1,11 +1,14 @@
-<?php namespace Laracasts\Utilities\JavaScript;
+<?php
 
-interface ViewBinder {
+namespace Laracasts\Utilities\JavaScript;
+
+interface ViewBinder
+{
 
     /**
-     * Bind the JavaScript to the view
+     * Bind the JavaScript variables to the view.
      *
-     * @param $js
+     * @param string $js
      */
     public function bind($js);
 

@@ -1,10 +1,15 @@
-<?php namespace Laracasts\Utilities\JavaScript;
+<?php
+
+namespace Laracasts\Utilities\JavaScript;
 
 use Illuminate\Events\Dispatcher;
 
-class LaravelViewBinder implements ViewBinder {
+class LaravelViewBinder implements ViewBinder
+{
 
     /**
+     * The event dispatcher implementation.
+     *
      * @var Dispatcher
      */
     private $event;
@@ -15,8 +20,10 @@ class LaravelViewBinder implements ViewBinder {
     private $viewToBindVariables;
 
     /**
+     * Create a new Laravel view binder instance.
+     *
      * @param Dispatcher $event
-     * @param $viewToBindVariables
+     * @param string     $viewToBindVariables
      */
     function __construct(Dispatcher $event, $viewToBindVariables)
     {
@@ -25,17 +32,15 @@ class LaravelViewBinder implements ViewBinder {
     }
 
     /**
-     * Bind the given JavaScript to the
-     * view using Laravel event listeners
+     * Bind the given JavaScript to the view.
      *
-     * @param $js The ready-to-go JS
+     * @param string $js
      */
     public function bind($js)
     {
-        $this->event->listen("composing: {$this->viewToBindVariables}", function() use ($js)
-        {
+        $this->event->listen("composing: {$this->viewToBindVariables}", function() use ($js) {
             echo "<script>{$js}</script>";
         });
     }
-    
+
 }
