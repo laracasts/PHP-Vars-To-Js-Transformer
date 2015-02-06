@@ -21,6 +21,10 @@ class JavaScriptServiceProvider extends ServiceProvider
             $view = config('javascript.bind_js_vars_to_this_view');
             $namespace = config('javascript.js_namespace');
 
+            if (is_null($view)) {
+                throw new JavaScriptException;
+            }
+
             $binder = new LaravelViewBinder($app['events'], $view);
 
             return new PHPToJavaScriptTransformer($binder, $namespace);
