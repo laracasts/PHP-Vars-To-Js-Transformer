@@ -38,7 +38,7 @@ class UtilitiesServiceProvider extends ServiceProvider
 
         AliasLoader::getInstance()->alias(
             'JavaScript',
-            'Laracasts\Utilities\JavaScript\Facades\JavaScript'
+            'Laracasts\Utilities\JavaScript\JavaScriptFacade'
         );
     }
 
