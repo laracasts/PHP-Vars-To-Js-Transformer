@@ -31,7 +31,7 @@ If you are a Laravel user, there is a service provider you can make use of to au
 
 'providers' => [
     '...',
-    'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
+    'Laracasts\Utilities\JavaScript\JavascriptServiceProvider'
 ];
 ```
 
