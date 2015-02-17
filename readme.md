@@ -23,7 +23,7 @@ Begin by installing this package through Composer.
 
 ### Laravel Users
 
-If you are a Laravel user, there is a service provider you can make use of to automatically prepare the bindings and such.
+If you are a Laravel user, there is a service provider and facade you can make use of to automatically prepare the bindings and such.
 
 ```php
 
@@ -31,8 +31,13 @@ If you are a Laravel user, there is a service provider you can make use of to au
 
 'providers' => [
     '...',
-    'Laracasts\Utilities\JavaScript\JavascriptServiceProvider'
+    'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
 ];
+
+'aliases' => [
+    '...',
+    'JavaScript' => 'Laracasts\Utilities\JavaScript\JavaScriptFacade',
+]
 ```
 
 When this provider is booted, you'll gain access to a helpful `JavaScript` facade, which you may use in your controllers.
