@@ -31,7 +31,7 @@ class LaravelViewBinder implements ViewBinder
     function __construct(Dispatcher $event, $viewToBindVariables)
     {
         $this->event = $event;
-        $this->viewToBindVariables = $viewToBindVariables;
+        $this->viewToBindVariables = str_replace('/', '.', $viewToBindVariables);
     }
 
     /**
