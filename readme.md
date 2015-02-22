@@ -115,6 +115,9 @@ then you'll access all JavaScript variables, like so:
 MyNewNamespace.varName
 ```
 
+### Symfony2
+To use this component in Symfony2 applications you can try [this bundle](https://github.com/holyspecter/HospectPhpVarsToJsBundle), built on top of PHP-Vars-To-Js-Transformer.
+
 ### Without Laravel
 
 If you're not using Laravel, then you'll need to hard-wire things yourself. (Or, feel free to submit a pull request with an implementation for your desired framework.)
