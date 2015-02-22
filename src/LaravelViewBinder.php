@@ -17,21 +17,21 @@ class LaravelViewBinder implements ViewBinder
     /**
      * The name of the view to bind any
      * generated JS variables to.
-     * 
+     *
      * @var string
      */
-    private $viewToBindVariables;
+    private $views;
 
     /**
      * Create a new Laravel view binder instance.
      *
-     * @param Dispatcher $event
-     * @param string     $viewToBindVariables
+     * @param Dispatcher   $event
+     * @param string|array $views
      */
-    function __construct(Dispatcher $event, $viewToBindVariables)
+    function __construct(Dispatcher $event, $views)
     {
         $this->event = $event;
-        $this->viewToBindVariables = str_replace('/', '.', $viewToBindVariables);
+        $this->views = str_replace('/', '.', (array) $views);
     }
 
     /**
@@ -41,11 +41,8 @@ class LaravelViewBinder implements ViewBinder
      */
     public function bind($js)
     {
-        $views = (array) $this->viewToBindVariables;
-
-        foreach ($views as $view)
-        {
-            $this->event->listen("composing: {$view}", function() use ($js) {
+        foreach ($this->views as $view) {
+            $this->event->listen("composing: {$view}", function () use ($js) {
                 echo "<script>{$js}</script>";
             });
         }
