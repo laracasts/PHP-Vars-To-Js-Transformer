@@ -28,7 +28,7 @@ class JavaScriptServiceProvider extends ServiceProvider
 
             $binder = new LaravelViewBinder($app['events'], $view);
 
-            return new PHPToJavaScriptTransformer($binder, $namespace, $autoEscapeBreaks);
+            return new PHPToJavaScriptTransformer($binder, $namespace, $autoEscapeBreaks == "true" ? true : false);
         });
     }
 

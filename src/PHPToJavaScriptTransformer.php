@@ -233,7 +233,7 @@ class PHPToJavaScriptTransformer
     {
         $value = str_replace(["\\", "'"], ["\\\\", "\'"], $value);
 
-        if($this->autoEscapeBreaks){
+        if($this->autoEscapeBreaks == true){
             $value =  preg_replace("/\r|\n/", "", $value);
         }
 
