@@ -26,7 +26,7 @@ class PHPToJavaScriptTransformer
      * 
      * @var boolean
      */
-    protecte $autoEscapeBreaks;
+    protected $autoEscapeBreaks;
 
     /**
      * All transformable types.
