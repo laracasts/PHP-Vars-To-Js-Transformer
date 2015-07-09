@@ -36,6 +36,6 @@ return [
     | You can disable this, if you want to do this yourself.
     |
     */
-    'js_auto_escape_breaks' => 'true'
+    'js_auto_escape_breaks' => true
 
 ];
