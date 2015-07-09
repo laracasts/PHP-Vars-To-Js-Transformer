@@ -22,6 +22,13 @@ class PHPToJavaScriptTransformer
     protected $viewBinder;
 
     /**
+     * Enables escapeing of line breaks
+     * 
+     * @var boolean
+     */
+    protecte $autoEscapeBreaks;
+
+    /**
      * All transformable types.
      *
      * @var array
@@ -41,10 +48,11 @@ class PHPToJavaScriptTransformer
      * @param ViewBinder $viewBinder
      * @param string     $namespace
      */
-    function __construct(ViewBinder $viewBinder, $namespace = 'window')
+    function __construct(ViewBinder $viewBinder, $namespace = 'window', $autoEscapeBreaks = true)
     {
         $this->viewBinder = $viewBinder;
         $this->namespace = $namespace;
+        $this->autoEscapeBreaks = $autoEscapeBreaks;
     }
 
     /**
@@ -223,7 +231,13 @@ class PHPToJavaScriptTransformer
      */
     protected function escape($value)
     {
-        return str_replace(["\\", "'"], ["\\\\", "\'"], $value);
+        $value = str_replace(["\\", "'"], ["\\\\", "\'"], $value);
+
+        if($this->autoEscapeBreaks){
+            $value =  preg_replace("/\r|\n/", "", $value);
+        }
+
+        return $value;
     }
 
 } 
