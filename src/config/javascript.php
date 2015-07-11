@@ -27,4 +27,15 @@ return [
     */
     'js_namespace' => 'window'
 
+    /*
+    |--------------------------------------------------------------------------
+    | Escape \n and \r to empty
+    |--------------------------------------------------------------------------
+    |
+    | If we pass multiline strings to var this causes errors. 
+    | You can disable this, if you want to do this yourself.
+    |
+    */
+    'js_auto_escape_breaks' => true
+
 ];
