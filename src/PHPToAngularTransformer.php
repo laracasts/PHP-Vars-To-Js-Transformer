@@ -20,15 +20,24 @@ class PHPToAngularTransformer extends PHPToJavaScriptTransformer
     protected $viewBinder;
 
     /**
-     * Create a new JS transformer instance.
+     * The name of the constant.
+     *
+     * @var string
+     */
+    private $constant;
+
+    /**
+     * Create a new Angular transformer instance.
      *
      * @param ViewBinder $viewBinder
      * @param string     $module
+     * @param string     $constant
      */
-    function __construct(ViewBinder $viewBinder, $module = 'app')
+    function __construct(ViewBinder $viewBinder, $module = 'app', $constant = 'DATA')
     {
         $this->viewBinder = $viewBinder;
         $this->module = $module;
+        $this->constant = $constant;
     }
 
     /**
@@ -41,10 +50,8 @@ class PHPToAngularTransformer extends PHPToJavaScriptTransformer
     public function buildJavaScriptSyntax(array $vars)
     {
         $js = $this->buildModule();
-
-        foreach ($vars as $key => $value) {
-            $js .= $this->buildConstant($key, $value);
-        }
+        $js .= $this->buildConstant($vars);
+        $js .= ';';
 
         return $js;
     }
@@ -63,13 +70,12 @@ class PHPToAngularTransformer extends PHPToJavaScriptTransformer
     /**
      * Translate a single PHP var to an Angular constant.
      *
-     * @param  string $key
-     * @param  string $value
+     * @param  array $vars
      * @return string
      */
-    protected function buildConstant($key, $value)
+    protected function buildConstant($vars)
     {
-        return ".constant('{$key}', {$this->optimizeValueForJavaScript($value)});";
+        return ".constant('{$this->constant}', {$this->optimizeValueForJavaScript($vars)});";
     }
 
 } 

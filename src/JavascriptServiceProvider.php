@@ -34,6 +34,7 @@ class JavaScriptServiceProvider extends ServiceProvider
             $this->app->bind('Angular', function ($app) {
                 $view = config('javascript.bind_js_vars_to_this_view');
                 $module = config('javascript.ng_module');
+                $constant = config('javascript.ng_constant');
 
                 if (is_null($view)) {
                     throw new JavaScriptException;
@@ -41,7 +42,7 @@ class JavaScriptServiceProvider extends ServiceProvider
 
                 $binder = new LaravelViewBinder($app['events'], $view);
 
-                return new PHPToAngularTransformer($binder, $module);
+                return new PHPToAngularTransformer($binder, $module, $constant);
             });
         }
     }

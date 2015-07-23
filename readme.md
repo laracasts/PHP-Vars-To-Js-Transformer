@@ -75,9 +75,7 @@ public function index()
 Using the code above, the following will be outputted (assuming you defined `myApp` as your module in the config).
 
 ```js
-angular.module('myApp')
-    .constant('foo', 'bar')
-    .constant('age': 29);
+angular.module('myApp').constant('DATA', {'foo', 'bar', 'age': 29});
 ```
 
 ### Defaults
@@ -129,7 +127,17 @@ return [
     | This will also activate the Angular service.
     |
     */
-    'ng_module' => false
+    'ng_module' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Angular Constant Name
+    |--------------------------------------------------------------------------
+    |
+    | The name of the Angular constant we are attaching the data to.
+    |
+    */
+    'ng_constant' => 'DATA'
 
 ];
 ```

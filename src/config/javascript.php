@@ -38,6 +38,16 @@ return [
     | This will also activate the Angular service.
     |
     */
-    'ng_module' => false
+    'ng_module' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Angular Constant Name
+    |--------------------------------------------------------------------------
+    |
+    | The name of the Angular constant we are attaching the data to.
+    |
+    */
+    'ng_constant' => 'DATA'
 
 ];
