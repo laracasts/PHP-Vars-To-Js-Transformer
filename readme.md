@@ -58,6 +58,28 @@ console.log(user); // User Obj
 console.log(age); // 29
 ```
 
+If you've also defined an Angular module in your config, you'll gain access to the `Angular` facade, which you may use in your controllers.
+
+```php
+public function index()
+{
+    Angular::put([
+        'foo' => 'bar',
+        'age' => 29
+    ]);
+
+    return View::make('hello');
+}
+```
+
+Using the code above, the following will be outputted (assuming you defined `myApp` as your module in the config).
+
+```js
+angular.module('myApp')
+    .constant('foo', 'bar')
+    .constant('age': 29);
+```
+
 ### Defaults
 
 If using Laravel, there are only two configuration options that you'll need to worry about. First, publish the default configuration.
@@ -94,7 +116,20 @@ return [
     | That way, you can access vars, like "SomeNamespace.someVariable."
     |
     */
-    'js_namespace' => 'window'
+    'js_namespace' => 'window',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Angular Module
+    |--------------------------------------------------------------------------
+    |
+    | By default, we disable the Angular constants service. If you would like
+    | to export your PHP vars to Angular constants, you will want to change
+    | this to the Angular module that you want to bind your constants to.
+    | This will also activate the Angular service.
+    |
+    */
+    'ng_module' => false
 
 ];
 ```

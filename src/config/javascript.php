@@ -25,6 +25,19 @@ return [
     | That way, you can access vars, like "SomeNamespace.someVariable."
     |
     */
-    'js_namespace' => 'window'
+    'js_namespace' => 'window',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Angular Module
+    |--------------------------------------------------------------------------
+    |
+    | By default, we disable the Angular constants service. If you would like
+    | to export your PHP vars to Angular constants, you will want to change
+    | this to the Angular module that you want to bind your constants to.
+    | This will also activate the Angular service.
+    |
+    */
+    'ng_module' => false
 
 ];
