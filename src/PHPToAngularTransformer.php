@@ -49,33 +49,21 @@ class PHPToAngularTransformer extends PHPToJavaScriptTransformer
      */
     public function buildJavaScriptSyntax(array $vars)
     {
-        $js = $this->buildModule();
-        $js .= $this->buildConstant($vars);
-        $js .= ';';
-
-        return $js;
+        return $this->buildNgConstant($vars);
     }
 
     /**
-     * Create the module that all
-     * constants will be nested under.
-     *
-     * @return string
-     */
-    protected function buildModule()
-    {
-        return "angular.module('{$this->module}')";
-    }
-
-    /**
-     * Translate a single PHP var to an Angular constant.
+     * Translate PHP vars array to an Angular constant.
      *
      * @param  array $vars
      * @return string
      */
-    protected function buildConstant($vars)
+    protected function buildNgConstant($vars)
     {
-        return ".constant('{$this->constant}', {$this->optimizeValueForJavaScript($vars)});";
+        $js = "angular.module('{$this->module}')";
+        $js .= ".constant('{$this->constant}', {$this->transformArray($vars)});";
+
+        return $js;
     }
 
 } 
