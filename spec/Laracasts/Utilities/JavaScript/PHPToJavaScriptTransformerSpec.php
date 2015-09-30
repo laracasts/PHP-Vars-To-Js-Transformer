@@ -26,6 +26,23 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
             ->shouldMatch('/window.window = window.window || {};/');
     }
 
+    function it_translates_an_array_of_key_value_pairs_to_javascript()
+    {
+        $this->put(['foo' => 'bar'])
+            ->shouldMatch("/window.foo = 'bar';/");
+    }
+
+    function it_translates_two_arguments_as_key_and_value_to_javascript()
+    {
+        $this->put('foo', 'bar')
+            ->shouldMatch("/window.foo = 'bar';/");
+    }
+
+    function it_takes_exception_if_incorrect_arguments_are_passed_to_put()
+    {
+        $this->shouldThrow('Exception')->duringPut();
+    }
+
     function it_transforms_php_strings()
     {
         $this->buildJavaScriptSyntax(['foo' => 'bar'])

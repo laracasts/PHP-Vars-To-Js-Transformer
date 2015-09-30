@@ -49,10 +49,19 @@ class PHPToJavaScriptTransformer
     /**
      * Bind the given array of variables to the view.
      *
-     * @param array $variables
      */
-    public function put(array $variables)
+    public function put()
     {
+        $arguments = func_get_args();
+
+        if (is_array($arguments[0])) {
+            $variables = $arguments[0];
+        } elseif (count($arguments) == 2) {
+            $variables = [$arguments[0] => $arguments[1]];
+        } else {
+            throw new Exception('Try JavaScript::put(["foo" => "bar"]');
+        }
+
         // First, we have to translate the variables
         // to something JS-friendly.
         $js = $this->buildJavaScriptSyntax($variables);
@@ -60,6 +69,8 @@ class PHPToJavaScriptTransformer
         // And then we'll actually bind those
         // variables to the view.
         $this->viewBinder->bind($js);
+
+        return $js;
     }
 
     /**
