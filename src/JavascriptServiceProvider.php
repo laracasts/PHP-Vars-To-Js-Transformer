@@ -29,6 +29,22 @@ class JavaScriptServiceProvider extends ServiceProvider
 
             return new PHPToJavaScriptTransformer($binder, $namespace);
         });
+
+        if(config('javascript.ng_module')) {
+            $this->app->bind('Angular', function ($app) {
+                $view = config('javascript.bind_js_vars_to_this_view');
+                $module = config('javascript.ng_module');
+                $constant = config('javascript.ng_constant');
+
+                if (is_null($view)) {
+                    throw new JavaScriptException;
+                }
+
+                $binder = new LaravelViewBinder($app['events'], $view);
+
+                return new PHPToAngularTransformer($binder, $module, $constant);
+            });
+        }
     }
 
     /**
@@ -44,6 +60,13 @@ class JavaScriptServiceProvider extends ServiceProvider
             'JavaScript',
             'Laracasts\Utilities\JavaScript\JavaScriptFacade'
         );
+
+        if(config('javascript.ng_module')) {
+            AliasLoader::getInstance()->alias(
+                'Angular',
+                'Laracasts\Utilities\JavaScript\AngularFacade'
+            );
+        }
     }
 
 }
