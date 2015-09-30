@@ -14,6 +14,7 @@ class JavaScriptServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('JavaScript', function ($app) {
             $view = config('javascript.bind_js_vars_to_this_view');
             $namespace = config('javascript.js_namespace');
 
