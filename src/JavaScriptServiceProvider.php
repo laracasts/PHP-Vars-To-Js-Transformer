@@ -4,12 +4,9 @@ namespace Laracasts\Utilities\JavaScript;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer;
-use Laracasts\Utilities\JavaScript\LaravelViewBinder;
 
 class JavaScriptServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *
@@ -17,13 +14,8 @@ class JavaScriptServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('JavaScript', function ($app) {
             $view = config('javascript.bind_js_vars_to_this_view');
             $namespace = config('javascript.js_namespace');
-
-            if (is_null($view)) {
-                throw new JavaScriptException;
-            }
 
             $binder = new LaravelViewBinder($app['events'], $view);
 
@@ -31,7 +23,7 @@ class JavaScriptServiceProvider extends ServiceProvider
         });
 
         $this->mergeConfigFrom(
-            __DIR__.'/config/javascript.php', 'javascript'
+            __DIR__ . '/config/javascript.php', 'javascript'
         );
     }
 

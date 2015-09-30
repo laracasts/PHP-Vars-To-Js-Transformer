@@ -6,7 +6,6 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class LaravelViewBinder implements ViewBinder
 {
-
     /**
      * The event dispatcher implementation.
      *
@@ -15,8 +14,7 @@ class LaravelViewBinder implements ViewBinder
     private $event;
 
     /**
-     * The name of the view to bind any
-     * generated JS variables to.
+     * The name of the view to bind JS variables to.
      *
      * @var string
      */
@@ -31,7 +29,7 @@ class LaravelViewBinder implements ViewBinder
     function __construct(Dispatcher $event, $views)
     {
         $this->event = $event;
-        $this->views = str_replace('/', '.', (array) $views);
+        $this->views = str_replace('/', '.', (array)$views);
     }
 
     /**
@@ -47,5 +45,4 @@ class LaravelViewBinder implements ViewBinder
             });
         }
     }
-
 }

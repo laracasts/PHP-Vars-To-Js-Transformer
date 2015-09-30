@@ -6,7 +6,6 @@ use Exception;
 
 class PHPToJavaScriptTransformer
 {
-
     /**
      * The namespace to nest JS vars under.
      *
@@ -82,8 +81,7 @@ class PHPToJavaScriptTransformer
     }
 
     /**
-     * Create the namespace that all
-     * vars will be nested under.
+     * Create the namespace to which all vars are nested.
      *
      * @return string
      */
@@ -108,8 +106,8 @@ class PHPToJavaScriptTransformer
      * Format a value for JavaScript.
      *
      * @param  string $value
-     * @throws \Exception
-     * @return mixed
+     * @throws Exception
+     * @return string
      */
     protected function optimizeValueForJavaScript($value)
     {
@@ -140,7 +138,7 @@ class PHPToJavaScriptTransformer
     /**
      * Transform an array.
      *
-     * @param  array  $value
+     * @param  array $value
      * @return string
      */
     protected function transformArray($value)
@@ -181,7 +179,7 @@ class PHPToJavaScriptTransformer
      *
      * @param  object $value
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function transformObject($value)
     {
@@ -225,5 +223,4 @@ class PHPToJavaScriptTransformer
     {
         return str_replace(["\\", "'"], ["\\\\", "\'"], $value);
     }
-
-} 
+}
