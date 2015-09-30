@@ -2,7 +2,7 @@
 
 namespace Laracasts\Utilities\JavaScript;
 
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class LaravelViewBinder implements ViewBinder
 {
