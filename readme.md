@@ -50,6 +50,8 @@ public function index()
 }
 ```
 
+> In Laravel 5, of course add `use JavaScript;` to the top of your controller.
+
 Using the code above, you'll now be able to access `foo`, `user`, and `age` from your JavaScript.
 
 ```js
@@ -57,6 +59,18 @@ console.log(foo); // bar
 console.log(user); // User Obj
 console.log(age); // 29
 ```
+
+This package, by default, binds your JavaScript variables to a "footer" view, which you will include. For example:
+
+```
+<body>
+    <h1>My Page</h1>
+
+    @include ('footer') // <-- Variables prepended to this view
+</body>
+```
+
+Naturally, you can change this default to a different view. See below.
 
 ### Defaults
 
@@ -143,6 +157,7 @@ Next, put it all together:
 ```php
 $binder = new MyAppViewBinder;
 $javascript = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
+
 $javascript->put(['foo' => 'bar']);
 ```
 
