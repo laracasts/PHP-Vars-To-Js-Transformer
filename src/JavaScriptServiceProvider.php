@@ -29,6 +29,10 @@ class JavaScriptServiceProvider extends ServiceProvider
 
             return new PHPToJavaScriptTransformer($binder, $namespace);
         });
+
+        $this->mergeConfigFrom(
+            __DIR__.'/config/javascript.php', 'javascript'
+        );
     }
 
     /**
