@@ -19,11 +19,18 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
         $this->shouldHaveType('Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer');
     }
 
-    function it_nests_all_vars_under_namespace()
+    function it_uses_the_window_as_the_root_namespace_by_default()
     {
-        // defaulting to window
         $this->buildJavaScriptSyntax([])
-            ->shouldMatch('/window.window = window.window || {};/');
+            ->shouldEqual('');
+    }
+
+    function if_another_namespace_is_provided_it_will_use_that_instead(ViewBinder $viewBinder)
+    {
+        $this->beConstructedWith($viewBinder, 'Namespace');
+        
+        $this->buildJavaScriptSyntax([])
+            ->shouldEqual('window.Namespace = window.Namespace || {};');
     }
 
     function it_translates_an_array_of_key_value_pairs_to_javascript()

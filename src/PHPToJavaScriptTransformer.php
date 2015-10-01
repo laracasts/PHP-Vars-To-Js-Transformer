@@ -2,8 +2,9 @@
 
 namespace Laracasts\Utilities\JavaScript;
 
-use Exception;
 use stdClass;
+use Exception;
+use JsonSerializable;
 
 class PHPToJavaScriptTransformer
 {
@@ -29,7 +30,6 @@ class PHPToJavaScriptTransformer
     protected $types = [
         'String',
         'Array',
-        'stdClass',
         'Object',
         'Numeric',
         'Boolean',
@@ -100,6 +100,10 @@ class PHPToJavaScriptTransformer
      */
     protected function buildNamespaceDeclaration()
     {
+        if ($this->namespace == 'window') {
+            return '';
+        }
+
         return "window.{$this->namespace} = window.{$this->namespace} || {};";
     }
 
@@ -125,7 +129,8 @@ class PHPToJavaScriptTransformer
     protected function optimizeValueForJavaScript($value)
     {
         // For every transformable type, let's see if
-        // it needs to be converted for JS-used.
+        // it needs to be transformed for JS-use.
+
         foreach ($this->types as $transformer) {
             $js = $this->{"transform{$transformer}"}($value);
 
@@ -188,46 +193,33 @@ class PHPToJavaScriptTransformer
     }
 
     /**
-     * Transform an object.
-     *
      * @param  object $value
      * @return string
-     */
-    protected function transformstdClass($value)
-    {
-        if ($value instanceof stdClass)
-        {
-            return json_encode($value);
-        }
-    }
-
-    /**
-     * @param $value
-     * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     protected function transformObject($value)
     {
-        if (is_object($value)) {
-            if ($value instanceof \JsonSerializable) {
-                return json_encode($value);
-            }
-
-            // If a toJson() method exists, we'll assume that
-            // the object can cast itself automatically.
-            if (method_exists($value, 'toJson')) {
-                return $value;
-            }
-
-
-            // Otherwise, if the object doesn't even have
-            // a toString method, we can't proceed.
-            if ( ! method_exists($value, '__toString')) {
-                throw new Exception('The provided object needs a __toString() method.');
-            }
-
-            return "'{$value}'";
+        if ( ! is_object($value)) {
+            return;
         }
+
+        if ($value instanceof JsonSerializable || $value instanceof StdClass) {
+            return json_encode($value);
+        }
+
+        // If a toJson() method exists, we'll assume that
+        // the object can cast itself automatically.
+        if (method_exists($value, 'toJson')) {
+            return $value;
+        }
+
+        // Otherwise, if the object doesn't even have a
+        // __toString() method, we can't proceed.
+        if ( ! method_exists($value, '__toString')) {
+            throw new Exception('Cannot transform this object to JavaScript.');
+        }
+
+        return "'{$value}'";
     }
 
     /**
