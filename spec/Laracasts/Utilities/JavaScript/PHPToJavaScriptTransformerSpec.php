@@ -73,6 +73,12 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
             ->shouldMatch('/window.age = null;window.sum = null;/');
     }
 
+    function it_transforms_json_serializable_objects()
+    {
+        $this->buildJavaScriptSyntax(['foo' => new JsonSerializableClass])
+            ->shouldMatch('/window.foo = {"key":"value"}/');
+    }
+
     function it_throws_an_exception_if_an_object_cant_be_transformed(\Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer $obj)
     {
         $this->shouldThrow('Exception')
@@ -85,4 +91,12 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
             ->shouldMatch('/window.window = window.window || {};/');
     }
 
+}
+
+class JsonSerializableClass implements \JsonSerializable
+{
+    function jsonSerialize()
+    {
+        return ['key' => 'value'];
+    }
 }

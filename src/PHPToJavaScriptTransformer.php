@@ -209,11 +209,16 @@ class PHPToJavaScriptTransformer
     protected function transformObject($value)
     {
         if (is_object($value)) {
+            if ($value instanceof \JsonSerializable) {
+                return json_encode($value);
+            }
+
             // If a toJson() method exists, we'll assume that
             // the object can cast itself automatically.
             if (method_exists($value, 'toJson')) {
                 return $value;
             }
+
 
             // Otherwise, if the object doesn't even have
             // a toString method, we can't proceed.
