@@ -61,7 +61,7 @@ class PHPToJavaScriptTransformer
         } elseif (count($arguments) == 2) {
             $variables = [$arguments[0] => $arguments[1]];
         } else {
-            throw new Exception('Try JavaScript::put(["foo" => "bar"]');
+            throw new Exception('Try JavaScript::put(["foo" => "bar"])');
         }
 
         // First, we have to translate the variables
