@@ -37,10 +37,14 @@ class JavaScriptServiceProvider extends ServiceProvider
             __DIR__ . '/config/javascript.php' => config_path('javascript.php')
         ]);
 
-        AliasLoader::getInstance()->alias(
-            'JavaScript',
-            'Laracasts\Utilities\JavaScript\JavaScriptFacade'
-        );
+        if (class_exists('Illuminate\Foundation\AliasLoader')) {
+            AliasLoader::getInstance()->alias(
+                'JavaScript',
+                'Laracasts\Utilities\JavaScript\JavaScriptFacade'
+            );
+        } else {
+            class_alias('Laracasts\Utilities\JavaScript\JavaScriptFacade', 'JavaScript');
+        }
     }
 
 }

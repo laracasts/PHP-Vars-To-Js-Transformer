@@ -17,6 +17,9 @@
         "phpspec/phpspec": "~2.0"
     },
     "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
         "psr-4": {
             "Laracasts\\Utilities\\JavaScript\\": "src/"
         }
