@@ -116,7 +116,7 @@ class PHPToJavaScriptTransformer
      */
     protected function buildVariableInitialization($key, $value)
     {
-        return "{$this->namespace}.{$key} = {$this->optimizeValueForJavaScript($value)};";
+        return "{$this->namespace}['{$key}'] = {$this->optimizeValueForJavaScript($value)};";
     }
 
     /**
