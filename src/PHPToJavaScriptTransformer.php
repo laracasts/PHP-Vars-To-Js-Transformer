@@ -243,6 +243,6 @@ class PHPToJavaScriptTransformer
      */
     protected function escape($value)
     {
-        return str_replace(["\\", "'"], ["\\\\", "\'"], $value);
+        return str_replace(["\\", "'", "\n"], ["\\\\", "\'", "\\n"], $value);
     }
 }
