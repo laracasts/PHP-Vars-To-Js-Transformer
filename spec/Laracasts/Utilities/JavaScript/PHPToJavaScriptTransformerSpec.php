@@ -56,10 +56,26 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
              ->shouldMatch("/window.foo = 'bar';/");
     }
 
+    function it_transforms_multiline_php_strings()
+    {
+        $this->buildJavaScriptSyntax(['foo' => "new\nline"])
+             ->shouldContain('\n'); // String
+        $this->buildJavaScriptSyntax(['foo' => "new\nline"])
+             ->shouldNotContain("\n"); // Newline character
+    }
+
     function it_transforms_php_arrays()
     {
         $this->buildJavaScriptSyntax(['letters' => ['a', 'b']])
              ->shouldMatch('/window.letters = \["a","b"\];/');
+    }
+
+    function it_transforms_multiline_strings_in_php_arrays()
+    {
+        $this->buildJavaScriptSyntax(['newline' => ["new\nline"]])
+             ->shouldContain('\n'); // String
+        $this->buildJavaScriptSyntax(['newline' => ["new\nline"]])
+             ->shouldNotContain("\n"); // Newline character
     }
 
     function it_transforms_php_booleans()
