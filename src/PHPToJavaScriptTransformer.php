@@ -193,6 +193,8 @@ class PHPToJavaScriptTransformer
     }
 
     /**
+     * Transform an object.
+     *
      * @param  object $value
      * @return string
      * @throws Exception
