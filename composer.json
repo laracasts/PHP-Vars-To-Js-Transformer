@@ -23,5 +23,15 @@
         "psr-4": {
             "Laracasts\\Utilities\\JavaScript\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
+            ],
+            "aliases": {
+                "JavaScript": "Laracasts\\Utilities\\JavaScript\\JavaScriptFacade"
+            }
+        }
     }
 }
