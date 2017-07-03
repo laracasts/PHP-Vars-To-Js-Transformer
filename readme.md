@@ -77,7 +77,7 @@ Naturally, you can change this default to a different view. See below.
 If using Laravel, there are only two configuration options that you'll need to worry about. First, publish the default configuration.
 
 ```bash
-php artisan vendor:publish
+php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider"
 ```
 
 This will add a new configuration file to: `config/javascript.php`.
