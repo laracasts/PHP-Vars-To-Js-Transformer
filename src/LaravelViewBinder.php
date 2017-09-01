@@ -11,14 +11,14 @@ class LaravelViewBinder implements ViewBinder
      *
      * @var Dispatcher
      */
-    private $event;
+    protected $event;
 
     /**
      * The name of the view to bind JS variables to.
      *
      * @var string
      */
-    private $views;
+    protected $views;
 
     /**
      * Create a new Laravel view binder instance.
@@ -26,7 +26,7 @@ class LaravelViewBinder implements ViewBinder
      * @param Dispatcher   $event
      * @param string|array $views
      */
-    function __construct(Dispatcher $event, $views)
+    public function __construct(Dispatcher $event, $views)
     {
         $this->event = $event;
         $this->views = str_replace('/', '.', (array)$views);
