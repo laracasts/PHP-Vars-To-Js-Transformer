@@ -1,7 +1,8 @@
 <?php
 
-namespace spec\Laracasts\Utilities\JavaScript;
+namespace spec\Laracasts\Utilities\JavaScript\Transformers;
 
+use Laracasts\Utilities\JavaScript\Transformers\Transformer;
 use Laracasts\Utilities\JavaScript\ViewBinder;
 use PhpSpec\ObjectBehavior;
 
@@ -14,12 +15,12 @@ class TransformerSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Laracasts\Utilities\JavaScript\Transformer');
+        $this->shouldHaveType('Laracasts\Utilities\JavaScript\Transformers\Transformer');
     }
 
     function it_uses_the_window_as_the_root_namespace_by_default()
     {
-        $this->buildJavaScriptSyntax([])
+        $this->constructJavaScript([])
             ->shouldEqual('');
     }
 
@@ -27,7 +28,7 @@ class TransformerSpec extends ObjectBehavior
     {
         $this->beConstructedWith($viewBinder, 'Namespace');
 
-        $this->buildJavaScriptSyntax([])
+        $this->constructJavaScript([])
             ->shouldEqual('window.Namespace = window.Namespace || {};');
     }
 
@@ -50,49 +51,49 @@ class TransformerSpec extends ObjectBehavior
 
     function it_transforms_php_strings()
     {
-        $this->buildJavaScriptSyntax(['foo' => 'bar'])
+        $this->constructJavaScript(['foo' => 'bar'])
             ->shouldMatch("/window.foo = 'bar';/");
     }
 
     function it_transforms_php_arrays()
     {
-        $this->buildJavaScriptSyntax(['letters' => ['a', 'b']])
+        $this->constructJavaScript(['letters' => ['a', 'b']])
             ->shouldMatch('/window.letters = \["a","b"\];/');
     }
 
     function it_transforms_php_booleans()
     {
-        $this->buildJavaScriptSyntax(['isFoo' => false])
+        $this->constructJavaScript(['isFoo' => false])
             ->shouldMatch('/window.isFoo = false;/');
     }
 
     function it_transforms_numerics()
     {
-        $this->buildJavaScriptSyntax(['age' => 10, 'sum' => 10.12, 'dec' => 0])
+        $this->constructJavaScript(['age' => 10, 'sum' => 10.12, 'dec' => 0])
             ->shouldMatch('/window.age = 10;window.sum = 10.12;window.dec = 0;/');
     }
 
     function it_transforms_null_values()
     {
-        $this->buildJavaScriptSyntax(['age' => null, 'sum' => null])
+        $this->constructJavaScript(['age' => null, 'sum' => null])
             ->shouldMatch('/window.age = null;window.sum = null;/');
     }
 
     function it_transforms_json_serializable_objects()
     {
-        $this->buildJavaScriptSyntax(['foo' => new JsonSerializableClass])
+        $this->constructJavaScript(['foo' => new JsonSerializableClass])
             ->shouldMatch('/window.foo = {"key":"value"}/');
     }
 
-    function it_throws_an_exception_if_an_object_cant_be_transformed(\Laracasts\Utilities\JavaScript\Transformer $obj)
+    function it_throws_an_exception_if_an_object_cant_be_transformed(Transformer $obj)
     {
         $this->shouldThrow('Exception')
-            ->duringBuildJavaScriptSyntax(['foo' => $obj]);
+            ->duringConstructJavaScript(['foo' => $obj]);
     }
 
     function it_does_not_throw_an_exception_for_stdClass(\StdClass $obj)
     {
-        $this->buildJavaScriptSyntax(['foo' => $obj])
+        $this->constructJavaScript(['foo' => $obj])
             ->shouldMatch('/window.window = window.window || {};/');
     }
 
