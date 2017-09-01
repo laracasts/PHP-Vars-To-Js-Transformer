@@ -14,8 +14,8 @@ Begin by installing this package through Composer.
 ```js
 {
     "require": {
-		"laracasts/utilities": "~2.0"
-	}
+        "laracasts/utilities": "~2.0"
+    }
 }
 ```
 
@@ -23,7 +23,9 @@ Begin by installing this package through Composer.
 
 ### Laravel Users
 
-If you are a Laravel user, there is a service provider you can make use of to automatically prepare the bindings and such.
+For Laravel users, there is a service provider you can make use of to automatically register the necessary bindings.
+
+> Laravel 5.5+ users: this step may be skipped, as we can auto-register the package with the framework.
 
 ```php
 
@@ -34,6 +36,7 @@ If you are a Laravel user, there is a service provider you can make use of to au
     'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
 ];
 ```
+
 
 When this provider is booted, you'll gain access to a helpful `JavaScript` facade, which you may use in your controllers.
 
@@ -78,7 +81,9 @@ If using Laravel, there are only two configuration options that you'll need to w
 
 ```bash
 php artisan vendor:publish
-or
+
+// Or...
+
 php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider"
 ```
 
@@ -158,6 +163,7 @@ Next, put it all together:
 
 ```php
 $binder = new MyAppViewBinder;
+
 $javascript = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
 
 $javascript->put(['foo' => 'bar']);
