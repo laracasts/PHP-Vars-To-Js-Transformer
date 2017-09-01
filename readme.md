@@ -78,6 +78,8 @@ If using Laravel, there are only two configuration options that you'll need to w
 
 ```bash
 php artisan vendor:publish
+or
+php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider"
 ```
 
 This will add a new configuration file to: `config/javascript.php`.
