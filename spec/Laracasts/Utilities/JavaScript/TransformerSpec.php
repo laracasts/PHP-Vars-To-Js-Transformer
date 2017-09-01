@@ -2,13 +2,11 @@
 
 namespace spec\Laracasts\Utilities\JavaScript;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Laracasts\Utilities\JavaScript\ViewBinder;
+use PhpSpec\ObjectBehavior;
 
-class PHPToJavaScriptTransformerSpec extends ObjectBehavior
+class TransformerSpec extends ObjectBehavior
 {
-
     function let(ViewBinder $viewBinder)
     {
         $this->beConstructedWith($viewBinder);
@@ -16,7 +14,7 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer');
+        $this->shouldHaveType('Laracasts\Utilities\JavaScript\Transformer');
     }
 
     function it_uses_the_window_as_the_root_namespace_by_default()
@@ -28,7 +26,7 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
     function if_another_namespace_is_provided_it_will_use_that_instead(ViewBinder $viewBinder)
     {
         $this->beConstructedWith($viewBinder, 'Namespace');
-        
+
         $this->buildJavaScriptSyntax([])
             ->shouldEqual('window.Namespace = window.Namespace || {};');
     }
@@ -53,13 +51,13 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
     function it_transforms_php_strings()
     {
         $this->buildJavaScriptSyntax(['foo' => 'bar'])
-             ->shouldMatch("/window.foo = 'bar';/");
+            ->shouldMatch("/window.foo = 'bar';/");
     }
 
     function it_transforms_php_arrays()
     {
         $this->buildJavaScriptSyntax(['letters' => ['a', 'b']])
-             ->shouldMatch('/window.letters = \["a","b"\];/');
+            ->shouldMatch('/window.letters = \["a","b"\];/');
     }
 
     function it_transforms_php_booleans()
@@ -86,7 +84,7 @@ class PHPToJavaScriptTransformerSpec extends ObjectBehavior
             ->shouldMatch('/window.foo = {"key":"value"}/');
     }
 
-    function it_throws_an_exception_if_an_object_cant_be_transformed(\Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer $obj)
+    function it_throws_an_exception_if_an_object_cant_be_transformed(\Laracasts\Utilities\JavaScript\Transformer $obj)
     {
         $this->shouldThrow('Exception')
             ->duringBuildJavaScriptSyntax(['foo' => $obj]);

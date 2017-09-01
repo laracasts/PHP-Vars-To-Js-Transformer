@@ -6,7 +6,7 @@ use stdClass;
 use Exception;
 use JsonSerializable;
 
-class PHPToJavaScriptTransformer
+class Transformer
 {
     /**
      * The namespace to nest JS vars under.

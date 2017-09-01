@@ -20,7 +20,7 @@ class JavaScriptServiceProvider extends ServiceProvider
 
             $binder = new LaravelViewBinder($app['events'], $view);
 
-            return new PHPToJavaScriptTransformer($binder, $namespace);
+            return new Transformer($binder, $namespace);
         });
 
         $this->mergeConfigFrom(
