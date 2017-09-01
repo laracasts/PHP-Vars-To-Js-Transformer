@@ -11,12 +11,8 @@ This package simplifies the process drastically.
 
 Begin by installing this package through Composer.
 
-```js
-{
-    "require": {
-        "laracasts/utilities": "~2.0"
-    }
-}
+```bash
+composer require laracasts/utilities
 ```
 
 > If you use Laravel 4: instead install `~1.0` of this package (and use the documentation for that release). For Laravel 5 (or non-Laravel), `~2.0` will do the trick!
