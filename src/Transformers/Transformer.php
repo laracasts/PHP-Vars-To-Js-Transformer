@@ -67,7 +67,7 @@ class Transformer
      * @param  array $variables
      * @return array
      */
-    public function constructJavaScript(array $variables)
+    public function constructJavaScript($variables)
     {
         $js = $this->constructNamespace();
 
