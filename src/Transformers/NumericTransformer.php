@@ -2,7 +2,6 @@
 
 namespace Laracasts\Utilities\JavaScript\Transformers;
 
-
 class NumericTransformer
 {
     /**
