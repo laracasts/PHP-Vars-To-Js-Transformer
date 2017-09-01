@@ -55,10 +55,26 @@ class TransformerSpec extends ObjectBehavior
             ->shouldMatch("/window.foo = 'bar';/");
     }
 
+    function it_transforms_multiline_php_strings()
+    {
+        $this->constructJavaScript(['foo' => "new\nline"])
+            ->shouldContain('\n'); // String
+        $this->constructJavaScript(['foo' => "new\nline"])
+            ->shouldNotContain("\n"); // Newline character
+    }
+
     function it_transforms_php_arrays()
     {
         $this->constructJavaScript(['letters' => ['a', 'b']])
             ->shouldMatch('/window.letters = \["a","b"\];/');
+    }
+
+    function it_transforms_multiline_strings_in_php_arrays()
+    {
+        $this->constructJavaScript(['newline' => ["new\nline"]])
+            ->shouldContain('\n'); // String
+        $this->constructJavaScript(['newline' => ["new\nline"]])
+            ->shouldNotContain("\n"); // Newline character
     }
 
     function it_transforms_php_booleans()
