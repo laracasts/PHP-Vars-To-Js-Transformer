@@ -16,10 +16,6 @@ class ObjectTransformer
      */
     public function transform($value)
     {
-        if (! is_object($value)) {
-            return;
-        }
-
         if ($value instanceof JsonSerializable || $value instanceof StdClass) {
             return json_encode($value);
         }

@@ -12,9 +12,7 @@ class StringTransformer
      */
     public function transform($value)
     {
-        if (is_string($value)) {
-            return "'{$this->escape($value)}'";
-        }
+        return "'{$this->escape($value)}'";
     }
 
     /**

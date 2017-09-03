@@ -2,7 +2,7 @@
 
 namespace Laracasts\Utilities\JavaScript\Transformers;
 
-class NumericTransformer
+class IntegerTransformer
 {
     /**
      * Transform a numeric value.
@@ -12,8 +12,6 @@ class NumericTransformer
      */
     public function transform($value)
     {
-        if (is_numeric($value)) {
-            return $value;
-        }
+        return $value;
     }
 }

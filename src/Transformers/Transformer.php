@@ -22,20 +22,6 @@ class Transformer
     protected $viewBinder;
 
     /**
-     * All transformable types.
-     *
-     * @var array
-     */
-    protected $transformers = [
-        StringTransformer::class,
-        ArrayTransformer::class,
-        ObjectTransformer::class,
-        NumericTransformer::class,
-        BooleanTransformer::class,
-        NullTransformer::class
-    ];
-
-    /**
      * Create a new JS transformer instance.
      *
      * @param ViewBinder $viewBinder
@@ -113,13 +99,9 @@ class Transformer
      */
     protected function convertToJavaScript($value)
     {
-        foreach ($this->transformers as $transformer) {
-            $js = (new $transformer)->transform($value);
+        $class = 'Laracasts\\Utilities\\JavaScript\\Transformers\\' . ucfirst(strtolower(gettype($value))) . 'Transformer';
 
-            if (! is_null($js)) {
-                return $js;
-            }
-        }
+        return (new $class)->transform($value);
     }
 
     /**
