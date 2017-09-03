@@ -12,8 +12,6 @@ class NullTransformer
      */
     public function transform($value)
     {
-        if (is_null($value)) {
-            return 'null';
-        }
+        return 'null';
     }
 }

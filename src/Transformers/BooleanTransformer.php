@@ -12,8 +12,6 @@ class BooleanTransformer
      */
     public function transform($value)
     {
-        if (is_bool($value)) {
-            return $value ? 'true' : 'false';
-        }
+        return $value ? 'true' : 'false';
     }
 }

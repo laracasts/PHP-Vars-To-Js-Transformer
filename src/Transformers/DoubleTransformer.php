@@ -2,16 +2,16 @@
 
 namespace Laracasts\Utilities\JavaScript\Transformers;
 
-class ArrayTransformer
+class DoubleTransformer
 {
     /**
-     * Transform an array.
+     * Transform a double value.
      *
-     * @param  array $value
-     * @return string
+     * @param  mixed $value
+     * @return mixed
      */
     public function transform($value)
     {
-        return json_encode($value);
+        return $value;
     }
 }
