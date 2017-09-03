@@ -99,7 +99,7 @@ class Transformer
      */
     protected function convertToJavaScript($value)
     {
-        $class = 'Laracasts\\Utilities\\JavaScript\\Transformers\\' . ucfirst(gettype($value)) . 'Transformer';
+        $class = 'Laracasts\\Utilities\\JavaScript\\Transformers\\' . ucfirst(strtolower(gettype($value))) . 'Transformer';
 
         return (new $class)->transform($value);
     }
