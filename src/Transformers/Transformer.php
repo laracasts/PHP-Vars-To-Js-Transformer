@@ -22,26 +22,12 @@ class Transformer
     protected $viewBinder;
 
     /**
-     * All transformable types.
-     *
-     * @var array
-     */
-    protected $transformers = [
-        StringTransformer::class,
-        ArrayTransformer::class,
-        ObjectTransformer::class,
-        NumericTransformer::class,
-        BooleanTransformer::class,
-        NullTransformer::class
-    ];
-
-    /**
      * Create a new JS transformer instance.
      *
      * @param ViewBinder $viewBinder
      * @param string     $namespace
      */
-    function __construct(ViewBinder $viewBinder, $namespace = 'window')
+    public function __construct(ViewBinder $viewBinder, $namespace = 'window')
     {
         $this->viewBinder = $viewBinder;
         $this->namespace = $namespace;
@@ -52,13 +38,9 @@ class Transformer
      */
     public function put()
     {
-        $javascript = $this->constructJavaScript(
-            $this->normalizeInput(func_get_args())
-        );
-
-        $this->viewBinder->bind($javascript);
-
-        return $javascript;
+        return tap($this->constructJavaScript($this->normalizeInput(func_get_args())), function ($js) {
+            $this->viewBinder->bind($js);
+        });
     }
 
     /**
@@ -69,13 +51,9 @@ class Transformer
      */
     public function constructJavaScript($variables)
     {
-        $js = $this->constructNamespace();
-
-        foreach ($variables as $name => $value) {
-            $js .= $this->initializeVariable($name, $value);
-        }
-
-        return $js;
+        return $this->constructNamespace() . collect($variables)->map(function ($value, $name) {
+            return $this->initializeVariable($name, $value);
+        })->implode('');
     }
 
     /**
@@ -113,13 +91,9 @@ class Transformer
      */
     protected function convertToJavaScript($value)
     {
-        foreach ($this->transformers as $transformer) {
-            $js = (new $transformer)->transform($value);
+        $class = __NAMESPACE__ . '\\' . (is_object($value) ? 'ObjectTransformer' : 'DefaultTransformer');
 
-            if (! is_null($js)) {
-                return $js;
-            }
-        }
+        return (new $class)->transform($value);
     }
 
     /**
