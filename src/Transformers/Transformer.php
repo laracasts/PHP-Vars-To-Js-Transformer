@@ -38,9 +38,11 @@ class Transformer
      */
     public function put()
     {
-        return tap($this->constructJavaScript($this->normalizeInput(func_get_args())), function ($js) {
-            $this->viewBinder->bind($js);
-        });
+        $js = $this->constructJavaScript($this->normalizeInput(func_get_args()));
+
+        $this->viewBinder->bind($js);
+
+        return $js;
     }
 
     /**
