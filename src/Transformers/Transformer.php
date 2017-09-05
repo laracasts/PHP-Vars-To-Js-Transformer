@@ -93,9 +93,9 @@ class Transformer
      */
     protected function convertToJavaScript($value)
     {
-        $class = __NAMESPACE__ . '\\' . (is_object($value) ? 'ObjectTransformer' : 'DefaultTransformer');
+        $transformer = is_object($value) ? ObjectTransformer::class : DefaultTransformer::class;
 
-        return (new $class)->transform($value);
+        return (new $transformer)->transform($value);
     }
 
     /**
