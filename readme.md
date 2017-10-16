@@ -158,9 +158,12 @@ class MyAppViewBinder implements Laracasts\Utilities\JavaScript\ViewBinder {
 Next, put it all together:
 
 ```php
+
+use Laracasts\Utilities\JavaScript\Transformers\Transformer;
+
 $binder = new MyAppViewBinder;
 
-$javascript = new PHPToJavaScriptTransformer($binder, 'window'); // change window to your desired namespace
+$javascript = new Transformer($binder, 'window'); // change window to your desired namespace
 
 $javascript->put(['foo' => 'bar']);
 ```
