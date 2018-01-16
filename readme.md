@@ -132,6 +132,12 @@ then you'll access all JavaScript variables, like so:
 MyNewNamespace.varName
 ```
 
+#### Note
+Run this artisan command after changing the view path.
+```
+php artisan config:clear
+```
+
 ### Symfony2
 To use this component in Symfony2 applications you can try [this bundle](https://github.com/holyspecter/HospectPhpVarsToJsBundle), built on top of PHP-Vars-To-Js-Transformer.
 
