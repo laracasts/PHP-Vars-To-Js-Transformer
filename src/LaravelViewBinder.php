@@ -41,7 +41,9 @@ class LaravelViewBinder implements ViewBinder
     {
         foreach ($this->views as $view) {
             $this->event->listen("composing: {$view}", function () use ($js) {
-                echo "<script>{$js}</script>";
+                echo app('view')
+                    ->make('laracasts-utilities::script', ['js' => $js])
+                    ->render();
             });
         }
     }
