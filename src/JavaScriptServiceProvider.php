@@ -23,7 +23,8 @@ class JavaScriptServiceProvider extends ServiceProvider
         });
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/javascript.php', 'javascript'
+            __DIR__ . '/config/javascript.php',
+            'javascript'
         );
     }
 
@@ -45,5 +46,4 @@ class JavaScriptServiceProvider extends ServiceProvider
             class_alias('Laracasts\Utilities\JavaScript\JavaScriptFacade', 'JavaScript');
         }
     }
-
 }
