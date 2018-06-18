@@ -35,10 +35,13 @@ class Transformer
 
     /**
      * Bind the given array of variables to the view.
+     *
+     * @param  mixed ...$args
+     * @return array
      */
-    public function put()
+    public function put(...$args)
     {
-        $js = $this->constructJavaScript($this->normalizeInput(func_get_args()));
+        $js = $this->constructJavaScript($this->normalizeInput($args));
 
         $this->viewBinder->bind($js);
 
