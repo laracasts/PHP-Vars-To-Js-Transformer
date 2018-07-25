@@ -4,6 +4,12 @@ namespace Laracasts\Utilities\JavaScript;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static string put(mixed $args, mixed $value = null);
+ * @method static string constructJavaScript(array $variables);
+ *
+ * @see \Laracasts\Utilities\JavaScript\Transformers\Transformer
+ */
 class JavaScriptFacade extends Facade
 {
     /**
