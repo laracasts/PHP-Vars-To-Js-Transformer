@@ -69,19 +69,20 @@ console.log(age); // 29
 
 This package, by default, binds your JavaScript variables to a "footer" view, which you will include. For example:
 
-```blade
+```html
 <body>
     <h1>My Page</h1>
 
-    @include ('footer') // <-- Variables prepended to this view
+    <!-- Variables prepended to this view -->
+    @include ('footer')
 </body>
 ```
 
 Naturally, you can change this default to a different view. See ["Defaults"](#defaults) below.
 
-#### JavaScript::setHtmlAttributes(...)
+#### JavaScript::setHtmlAttributes($htmlAttributes)
 
-The second public function provided by this facade is `JavaScript::setHtmlAttributes(...)`, which allows you to set the element attributes on the HTML `<script>` tag(s).
+The second public function provided by this facade is `JavaScript::setHtmlAttributes($htmlAttributes)`, which allows you to set the element attributes on the HTML `<script>` tag(s).
 For example, if you need to add nonces to your script tags for your Content Security Policy, you can pass the attributes in as an array:
 
 ```php
@@ -109,7 +110,9 @@ The above `JavaScript` calls would output something like this in the compiled vi
 ```
 
 > **NOTE**: This package does not provide any sort of Content Security Policy logic; the above is just an example of an additional HTML attribute you may need to add to a script tag.
+>
 > For more information on Content Security Policy, see [the Mozilla Developer docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+>
 > If you do not already have CSP and are using Laravel, I would recommend package [spatie/laravel-csp](https://github.com/spatie/laravel-csp).
 
 ## Defaults
