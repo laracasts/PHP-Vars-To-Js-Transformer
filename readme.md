@@ -82,7 +82,7 @@ Naturally, you can change this default to a different view. See ["Defaults"](#de
 #### JavaScript::setHtmlAttributes(...)
 
 The second public function provided by this facade is `JavaScript::setHtmlAttributes(...)`, which allows you to set the element attributes on the HTML `<script>` tag(s).
-For example, if you need to add nonces to your script tags for your Content Security Policy, you can pass the attribute it in as an array:
+For example, if you need to add nonces to your script tags for your Content Security Policy, you can pass the attributes in as an array:
 
 ```php
 public function index()
@@ -99,7 +99,7 @@ public function index()
 }
 ```
 
-The above `JavaScript` calls would output something like this in the view file:
+The above `JavaScript` calls would output something like this in the compiled view file:
 ```html
 <body>
   <script nonce="This_Is_A_Secure_Nonce">
@@ -108,8 +108,8 @@ The above `JavaScript` calls would output something like this in the view file:
 </body>
 ```
 
-> **NOTE**: This package does not provide any sort of Content Security Policy logic; the above is just an example of an additional HTML attribute you may need to add.
-> For more information on Content Security Policy, see [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+> **NOTE**: This package does not provide any sort of Content Security Policy logic; the above is just an example of an additional HTML attribute you may need to add to a script tag.
+> For more information on Content Security Policy, see [the Mozilla Developer docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 > If you do not already have CSP and are using Laravel, I would recommend package [spatie/laravel-csp](https://github.com/spatie/laravel-csp).
 
 ## Defaults
