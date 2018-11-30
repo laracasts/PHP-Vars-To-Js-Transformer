@@ -36,6 +36,14 @@ For Laravel users, there is a service provider you can make use of to automatica
 
 When this provider is booted, you'll gain access to a helpful `JavaScript` facade, which you may use in your controllers.
 
+## Usage
+
+#### JavaScript::put(...)
+
+The `JavaScript` facade has two public functions. The first/main one is `JavaScript::put(...)`, which transforms the given PHP data and passes it to the front-end view file.
+
+For example:
+
 ```php
 public function index()
 {
@@ -61,7 +69,7 @@ console.log(age); // 29
 
 This package, by default, binds your JavaScript variables to a "footer" view, which you will include. For example:
 
-```
+```blade
 <body>
     <h1>My Page</h1>
 
@@ -69,9 +77,42 @@ This package, by default, binds your JavaScript variables to a "footer" view, wh
 </body>
 ```
 
-Naturally, you can change this default to a different view. See below.
+Naturally, you can change this default to a different view. See ["Defaults"](#defaults) below.
 
-### Defaults
+#### JavaScript::setHtmlAttributes(...)
+
+The second public function provided by this facade is `JavaScript::setHtmlAttributes(...)`, which allows you to set the element attributes on the HTML `<script>` tag(s).
+For example, if you need to add nonces to your script tags for your Content Security Policy, you can pass the attribute it in as an array:
+
+```php
+public function index()
+{
+  JavaScript::setHtmlAttributes([
+    'nonce' => csp_nonce(), // `csp_nonce()` is NOT provided by this package
+  ]);
+
+  JavaScript::put([
+    'foo' => 'bar'
+  ]);
+
+  return View::make('hello');
+}
+```
+
+The above `JavaScript` calls would output something like this in the view file:
+```html
+<body>
+  <script nonce="This_Is_A_Secure_Nonce">
+      JS.foo = "bar";
+  </script>
+</body>
+```
+
+> **NOTE**: This package does not provide any sort of Content Security Policy logic; the above is just an example of an additional HTML attribute you may need to add.
+> For more information on Content Security Policy, see [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+> If you do not already have CSP and are using Laravel, I would recommend package [spatie/laravel-csp](https://github.com/spatie/laravel-csp).
+
+## Defaults
 
 If using Laravel, there are only two configuration options that you'll need to worry about. First, publish the default configuration.
 
