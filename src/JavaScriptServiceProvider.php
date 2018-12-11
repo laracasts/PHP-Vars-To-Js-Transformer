@@ -35,7 +35,7 @@ class JavaScriptServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/config/javascript.php' => config_path('javascript.php')
-        ]);
+        ], 'config');
 
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             AliasLoader::getInstance()->alias(
