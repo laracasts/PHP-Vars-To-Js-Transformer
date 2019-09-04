@@ -1,12 +1,12 @@
 {
-    "name": "laracasts/utilities",
+    "name": "GabMic/utilities",
     "description": "Transform your PHP to JavaScript",
     "keywords": ["laravel", "javascript"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Jeffrey Way",
-            "email": "jeffrey@laracasts.com"
+            "name": "GabMic",
+            "email": "gabmic@laracasts.com"
         }
     ],
     "require": {
