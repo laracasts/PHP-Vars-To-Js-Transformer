@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
-        "illuminate/support": "~5.0"
+        "php": ">=7.2.0",
+        "illuminate/support": "~6.0"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0"
