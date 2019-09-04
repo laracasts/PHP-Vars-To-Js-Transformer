@@ -1,5 +1,5 @@
 {
-    "name": "GabMic/utilities",
+    "name": "gabmic/utilities",
     "description": "Transform your PHP to JavaScript",
     "keywords": ["laravel", "javascript"],
     "license": "MIT",
