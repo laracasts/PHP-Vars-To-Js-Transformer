@@ -33,9 +33,14 @@ class JavaScriptServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__ . '/../views', 'laracasts-utilities');
+
         $this->publishes([
             __DIR__ . '/config/javascript.php' => config_path('javascript.php')
-        ]);
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/../views' => base_path('/resources/views/vendor/laracasts-utilities')
+        ], 'views');
 
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             AliasLoader::getInstance()->alias(

@@ -80,7 +80,7 @@ php artisan vendor:publish
 
 // Or...
 
-php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider"
+php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider" --tag=config
 ```
 
 This will add a new configuration file to: `config/javascript.php`.
@@ -136,6 +136,21 @@ MyNewNamespace.varName
 Run this artisan command after changing the view path.
 ```
 php artisan config:clear
+```
+
+### Script template
+
+By default variables will be output like
+```
+<script>/* JS variables here */</script>
+```
+If you want to modify this, first you have to publish default view
+```
+php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider" --tag=views
+```
+and then modify
+```
+resources/views/vendor/laracasts-utilities/script.blade.php`
 ```
 
 ### Symfony2
