@@ -1,40 +1,40 @@
 {
-    "name": "laracasts/utilities",
-    "description": "Transform your PHP to JavaScript",
-    "keywords": [
-        "laravel",
-        "javascript"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jeffrey Way",
-            "email": "jeffrey@laracasts.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.5.0|>=7.2.5|>=8.0.0",
-        "illuminate/support": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0"
-    },
-    "require-dev": {
-        "phpspec/phpspec": ">=2.0"
-    },
-    "autoload": {
-        "files": [
-            "src/helpers.php"
-        ],
-        "psr-4": {
-            "Laracasts\\Utilities\\JavaScript\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
-            ],
-            "aliases": {
-                "JavaScript": "Laracasts\\Utilities\\JavaScript\\JavaScriptFacade"
-            }
-        }
+  "name": "laracasts/utilities",
+  "description": "Transform your PHP to JavaScript",
+  "keywords": [
+    "laravel",
+    "javascript"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jeffrey Way",
+      "email": "jeffrey@laracasts.com"
     }
+  ],
+  "require": {
+    "php": ">=5.5.0|>=7.2.5|>=8.0.0",
+    "illuminate/support": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0"
+  },
+  "require-dev": {
+    "phpspec/phpspec": ">=2.0"
+  },
+  "autoload": {
+    "files": [
+      "src/helpers.php"
+    ],
+    "psr-4": {
+      "Laracasts\\Utilities\\JavaScript\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
+      ],
+      "aliases": {
+        "JavaScript": "Laracasts\\Utilities\\JavaScript\\JavaScriptFacade"
+      }
+    }
+  }
 }
