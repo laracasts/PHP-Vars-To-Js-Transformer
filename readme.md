@@ -33,7 +33,6 @@ For Laravel users, there is a service provider you can make use of to automatica
 ];
 ```
 
-
 When this provider is booted, you'll gain access to a helpful `JavaScript` facade, which you may use in your controllers.
 
 ```php
@@ -83,7 +82,7 @@ php artisan vendor:publish
 php artisan vendor:publish --provider="Laracasts\Utilities\JavaScript\JavaScriptServiceProvider"
 ```
 
-This will add a new configuration file to: `config/javascript.php`.
+This will add a new configuration file to: `config/javascript.php`
 
 ```php
 <?php
@@ -116,6 +115,12 @@ return [
 ];
 ```
 
+and copy the view to `views/vendor/utilities/javascript.blade.php`
+
+```php
+<script>{{$js}}</script>
+```
+
 #### bind_js_vars_to_this_view
 
 You need to update this file to specify which view you want your new JavaScript variables to be prepended to. Typically, your footer is a good place for this.
@@ -129,16 +134,19 @@ By default, all JavaScript vars will be nested under the global `window` object.
 then you'll access all JavaScript variables, like so:
 
 ```js
-MyNewNamespace.varName
+MyNewNamespace.varName;
 ```
 
 #### Note
+
 Run this artisan command after changing the view path.
+
 ```
 php artisan config:clear
 ```
 
 ### Symfony2
+
 To use this component in Symfony2 applications you can try [this bundle](https://github.com/holyspecter/HospectPhpVarsToJsBundle), built on top of PHP-Vars-To-Js-Transformer.
 
 ### Without Laravel
