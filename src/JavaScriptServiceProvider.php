@@ -34,8 +34,11 @@ class JavaScriptServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/javascript.php' => config_path('javascript.php')
+            __DIR__ . '/config/javascript.php' => config_path('javascript.php'),
+            __DIR__ . '/views' => base_path('resources/views/vendor/utilities')
         ]);
+
+        $this->loadViewsFrom(__DIR__ . '/views', 'utilities');
 
         if (class_exists('Illuminate\Foundation\AliasLoader')) {
             AliasLoader::getInstance()->alias(
