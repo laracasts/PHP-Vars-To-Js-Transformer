@@ -34,14 +34,23 @@ class LaravelViewBinder implements ViewBinder
 
     /**
      * Bind the given JavaScript to the view.
+     * Tracks if Javascript has already been added
+     * by keeping hashes of the js code to check against in the view data
      *
      * @param string $js
      */
     public function bind($js)
     {
         foreach ($this->views as $view) {
-            $this->event->listen("composing: {$view}", function () use ($js) {
-                echo "<script>{$js}</script>";
+            $this->event->listen("composing: {$view}", function ($view) use ($js) {
+                $data = $view->getData();
+                $hashes = isset($data['hashes']) ? $data['hashes'] : [];
+                $hash = md5($js);
+                if (!in_array($hash,$hashes)) {
+                    $hashes[] = md5($js);
+                    $view->with('hashes',$hashes);
+                    echo "<script>{$js}</script>";
+                }
             });
         }
     }
