@@ -46,6 +46,16 @@ class Transformer
     }
 
     /**
+     * Add HTML attributes to the <script> tag(s)
+     *
+     * @param array $attributes an associative array of attributes and values to add
+     */
+    public function setHtmlAttributes(array $attributes)
+    {
+        $this->viewBinder->setHtmlAttributes($attributes);
+    }
+
+    /**
      * Translate the array of PHP variables to a JavaScript syntax.
      *
      * @param  array $variables
